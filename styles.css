@@ -1,0 +1,38 @@
+/*@media (max-width: 641px) {
+    width: device-width;
+    zoom: 1.0; 
+    button {
+        width: 4em;
+        height: 1fr;
+        font-size: 50px;
+    }
+}*/
+   
+button {
+    min-height: 8em;
+    min-width: 3em;
+}
+
+
+#display {
+    display: flex;
+    border: 5px solid black;
+    background-color: greenyellow;
+    width: 100%;
+    height: 200px;
+    font-size: 50px;
+    justify-content: center;
+    align-items: center;
+}
+#miniscreen {
+    justify-self: flex-end;
+    align-self: flex-end;
+    border: 3px solid black;
+    width: 20%;
+    height: 20%;
+}
+#calculatorGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+}
