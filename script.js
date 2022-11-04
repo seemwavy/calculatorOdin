@@ -9,30 +9,20 @@ const sub = document.getElementById("subtract");
 const multi = document.getElementById("multiply");
 const divi = document.getElementById("divide");
 const operators = document.querySelectorAll(".operators");
-let nums = document.getElementById("nums")
+const nums = document.getElementById("nums")
 numbers.values  = nums.textContent
-const calculate = (() => {
-  const add = (a, b) => a + b;
-  const sub = (a, b) => a - b;
-  const mul = (a, b) => a * b;
-  const div = (a, b) => a / b;
-  return {
-    add,
-    sub,
-    mul,
-    div,
-  };
-});
+setNums();
 const expression = {
   a: 0,
   operand: 0,
   b: 0,
+  result: 0
 };
 function expressionMaker(keyValue) {
   const concat = (a, b) => {
     return ("" + a + b)
   };
-  if (EventTarget == numbers && expression.a == 0 || expression.operand == 0) {
+  if ((expression.a == 0) || (expression.operand == 0)) {
     if (expression.a == 0) {
        expression.a = keyValue
     }
@@ -41,37 +31,37 @@ function expressionMaker(keyValue) {
     }
     display.innerHTML = expression.a
   }
-  else if ((EventTarget == numbers) && (expression.a > 0) && (expression.operand !== 0)) {
+  else if ((expression.a > 0) && (expression.operand !== 0)) {
     if (expression.b == 0) {
       expression.b = keyValue
     }
     else {
       expression.b = concat(expression.b, keyValue)
     }
+    display.innerHTML = expression.b
     }
   else {
     null
   }
 }
 function evaluate() {
-  var result 
   if (expression.operand == "+") {
-    var result = calculate.add(expression.a, expression.b)
+    expression.result = (+expression.a) + (+expression.b)
   }
   else if (expression.operand == "-") {
-    result = calculate.sub(expression.a, expression.b)
+    expression.result = (+expression.a) - (+expression.b)
   }
   else if (expression.operand == "x") {
-    result = calculate.mul(expression.a, expression.b)
+    expression.result = (+expression.a) * (+expression.b)
   }
   else if (expression.operand == "/") {
-    result = calculate.div(expression.a,  expression.b)
+    expression.result = (+expression.a) / (+expression.b)
   }
   else {
     return null
   }
-  display.innerHTML = result
-  return result
+  display.innerHTML = expression.result
+  return expression.result
 }
 
 clear.addEventListener("click", () => {
@@ -85,21 +75,18 @@ function setNums() {
   let nums = document.getElementById("nums")
   numbers.values  = nums.textContent
 };
-setNums();
+
 function clearOut() {
    display.textContent = 0
    expression.a = 0
    expression.operand = 0
    expression.b = 0
+   expression.result = 0
 
 };
-
-
-
 clear.addEventListener("click", function() {
     clearOut();
 });
-
 add.addEventListener("click", () => {
   expression.operand = "+"
   display.innerHTML = "+"
@@ -120,30 +107,14 @@ numbers.forEach(function(element) {
     element.addEventListener("click", function(event) {
         var key = event.target
         let keyValue = key.textContent
+        if (expression.result == 0) {
         expressionMaker(keyValue)
+        }
+        else {
+          expression.a = expression.result
+          expression.b = 0
+          expression.result = 0
+          expressionMaker(keyValue)
+        }
     });
 });
-//equals.addEventListener("click", eval)
-//Finished code above, iffy not done code below
-
-//Testing  section below vvvvv
-
-/*function appendNumber(number) {
-    if (screen.textContent === '0' || false )
-      clearOut()
-    screen.textContent += number
-  }*/
-
-//testing ^^^^
- 
-//evaluation functionality 
-
-  
- // how to use: calculator.add(3,5); // 8
-  //calculator.sub(6,2); // 4
- // calculator.mul(14,5534); // 7747
-
-/*function operate (num1, num2, operator) {
-    return screen.innerHTML = (num1 operator num2)
-}
-*/

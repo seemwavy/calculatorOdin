@@ -7,7 +7,17 @@
         font-size: 50px;
     }
 }*/
-   
+body {
+    background-color: darkgreen;
+    background-image: url("odin-lined.png");
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: center;
+    min-width: 50em;
+    min-height: 50em;
+    max-width: 100em;
+    max-height: 100em;
+}   
 button {
     min-height: 8em;
     min-width: 3em;
@@ -24,15 +34,13 @@ button {
     justify-content: center;
     align-items: center;
 }
-#miniscreen {
-    justify-self: flex-end;
-    align-self: flex-end;
-    border: 3px solid black;
-    width: 20%;
-    height: 20%;
-}
 #calculatorGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    
+}
+.header {
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-color: black;
 }
